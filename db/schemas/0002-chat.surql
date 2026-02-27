@@ -15,7 +15,7 @@ DEFINE FIELD IF NOT EXISTS created_at    ON TABLE conversation TYPE datetime DEF
 DEFINE FIELD IF NOT EXISTS updated_at    ON TABLE conversation TYPE datetime DEFAULT time::now();
 
 DEFINE INDEX IF NOT EXISTS idx_conversation_participants
-    ON TABLE conversation COLUMNS participants UNIQUE;
+    ON TABLE conversation COLUMNS participants;
 
 -- =============================================
 -- Message table

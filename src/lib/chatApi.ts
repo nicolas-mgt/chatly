@@ -292,7 +292,8 @@ export async function findOrCreateConversation(
 
 	const existing = await db.query<[RawConversation[]]>(
 		`SELECT * FROM conversation
-		 WHERE participants = $sorted
+		 WHERE participants CONTAINSALL $sorted
+		   AND array::len(participants) = 2
 		 FETCH participants`,
 		{sorted}
 	)

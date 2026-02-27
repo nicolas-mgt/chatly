@@ -91,6 +91,7 @@ function SearchResultItem({
 			cursor='pointer'
 			gap='3'
 			onClick={() => onSelect(profile.id)}
+			onTouchEnd={() => onSelect(profile.id)}
 			px='3'
 			py='2'
 		>

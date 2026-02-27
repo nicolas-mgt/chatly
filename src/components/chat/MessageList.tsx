@@ -3,7 +3,13 @@ import {useEffect, useRef} from 'react'
 import type {useChat} from '@/hooks/useChat'
 import {MessageBubble} from './MessageBubble'
 
-export function MessageList({chat}: {chat: ReturnType<typeof useChat>}) {
+export function MessageList({
+	chat,
+	onImageClick
+}: {
+	chat: ReturnType<typeof useChat>
+	onImageClick: (url: string) => void
+}) {
 	const bottomRef = useRef<HTMLDivElement>(null)
 	const isFirstRender = useRef(true)
 
@@ -31,6 +37,7 @@ export function MessageList({chat}: {chat: ReturnType<typeof useChat>}) {
 						isLastSent={i === lastSentIdx}
 						key={msg.id}
 						message={msg}
+						onImageClick={onImageClick}
 					/>
 				))}
 				<div ref={bottomRef} />

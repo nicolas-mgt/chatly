@@ -10,5 +10,16 @@ services:
     environment:
       - SURREAL_CAPS_ALLOW_ALL=true
 
+  seaweedfs:
+    image: chrislusf/seaweedfs
+    ports:
+      - "9333:9333"
+      - "8333:8333"
+      - "8888:8888"
+    volumes:
+      - seaweedfs-data:/data
+    command: server -s3 -dir=/data
+
 volumes:
   surrealdb-data:
+  seaweedfs-data:

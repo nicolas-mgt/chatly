@@ -131,7 +131,8 @@
 					},
 					"style": {
 						"noProcessEnv": "off",
-						"noDefaultExport": "off"
+						"noDefaultExport": "off",
+						"useNamingConvention": "off"
 					},
 					"suspicious": {
 						"noConsole": "off"

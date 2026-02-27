@@ -105,6 +105,7 @@ function SearchResultItem({
 			cursor='pointer'
 			gap='3'
 			onClick={() => onSelect(profile.id)}
+			onPointerDown={e => e.preventDefault()}
 			px='3'
 			py='2'
 		>

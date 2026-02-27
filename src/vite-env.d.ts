@@ -7,6 +7,8 @@ declare global {
 		readonly VITE_SURREALDB_URL: string
 		readonly VITE_SURREALDB_NAMESPACE: string
 		readonly VITE_SURREALDB_DATABASE: string
+		readonly VITE_S3_ENDPOINT: string
+		readonly VITE_S3_BUCKET: string
 	}
 
 	interface Window {

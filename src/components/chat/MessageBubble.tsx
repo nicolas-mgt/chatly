@@ -12,12 +12,14 @@ export function MessageBubble({
 	message,
 	isLastSent,
 	addReaction,
-	currentUserId
+	currentUserId,
+	onImageClick
 }: {
 	message: Message
 	isLastSent: boolean
 	addReaction: (messageId: string, emoji: string) => void
 	currentUserId: string
+	onImageClick: (url: string) => void
 }) {
 	const isMine = message.senderId === currentUserId
 	const [showPicker, setShowPicker] = useState(false)
@@ -35,6 +37,7 @@ export function MessageBubble({
 			<BubbleContent
 				isMine={isMine}
 				message={message}
+				onImageClick={onImageClick}
 				onTogglePicker={() => setShowPicker(p => !p)}
 			/>
 			<ReactionBar reactions={message.reactions} />
@@ -57,10 +60,12 @@ export function MessageBubble({
 function BubbleContent({
 	message,
 	isMine,
+	onImageClick,
 	onTogglePicker
 }: {
 	message: Message
 	isMine: boolean
+	onImageClick: (url: string) => void
 	onTogglePicker: () => void
 }) {
 	return (
@@ -93,8 +98,10 @@ function BubbleContent({
 				{message.imageUrl && (
 					<Image
 						alt='Shared image'
+						cursor='pointer'
 						maxH='200px'
 						objectFit='cover'
+						onClick={() => onImageClick(message.imageUrl as string)}
 						src={message.imageUrl}
 						w='full'
 					/>

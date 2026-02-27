@@ -39,7 +39,7 @@ async function emptyBucket() {
 			})
 		)
 		const objects = list.Contents?.map(o => ({Key: o.Key}))
-		if (objects?.length > 0) {
+		if (objects && objects.length > 0) {
 			await s3.send(
 				new DeleteObjectsCommand({
 					Bucket: bucket,

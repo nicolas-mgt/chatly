@@ -78,7 +78,13 @@ function SearchResults({
 			transition={{duration: 0.15}}
 			zIndex='dropdown'
 		>
-			<VStack align='stretch' gap='0' maxH='200px' overflowY='auto'>
+			<VStack
+				align='stretch'
+				gap='0'
+				maxH='200px'
+				onMouseDown={e => e.preventDefault()}
+				overflowY='auto'
+			>
 				{results.map(profile => (
 					<SearchResultItem
 						key={profile.id}
@@ -105,7 +111,6 @@ function SearchResultItem({
 			cursor='pointer'
 			gap='3'
 			onClick={() => onSelect(profile.id)}
-			onPointerDown={e => e.preventDefault()}
 			px='3'
 			py='2'
 		>

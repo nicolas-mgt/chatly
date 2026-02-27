@@ -1,0 +1,12 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+.env.db
+coverage
+.nyc_output
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

@@ -1,0 +1,14 @@
+services:
+  surrealdb:
+    image: surrealdb/surrealdb:v3
+    pull_policy: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - surrealdb-data:/data
+    command: start --user root --pass root rocksdb:/data/chatly.db
+    environment:
+      - SURREAL_CAPS_ALLOW_ALL=true
+
+volumes:
+  surrealdb-data:

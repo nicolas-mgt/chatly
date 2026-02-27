@@ -1,6 +1,5 @@
 import {Avatar, Box, Flex, Input, Text, VStack} from '@chakra-ui/react'
 import {AnimatePresence, motion} from 'framer-motion'
-import {useRef, useState} from 'react'
 import {LuSearch} from 'react-icons/lu'
 import type {useChat} from '@/hooks/useChat'
 import type {UserProfile} from '@/lib/types'
@@ -8,18 +7,7 @@ import type {UserProfile} from '@/lib/types'
 const MotionBox = motion.create(Box)
 
 export function SearchBox({chat}: {chat: ReturnType<typeof useChat>}) {
-	const [focused, setFocused] = useState(false)
-	const blurTimeout = useRef<ReturnType<typeof setTimeout>>(undefined)
-	const showResults = focused && chat.searchResults.length > 0
-
-	function handleBlur() {
-		blurTimeout.current = setTimeout(() => setFocused(false), 150)
-	}
-
-	function handleFocus() {
-		clearTimeout(blurTimeout.current)
-		setFocused(true)
-	}
+	const showResults = chat.searchResults.length > 0
 
 	return (
 		<Box position='relative'>
@@ -33,9 +21,7 @@ export function SearchBox({chat}: {chat: ReturnType<typeof useChat>}) {
 				<LuSearch />
 				<Input
 					border='none'
-					onBlur={handleBlur}
 					onChange={e => chat.setSearchQuery(e.target.value)}
-					onFocus={handleFocus}
 					placeholder='Search users...'
 					size='sm'
 					value={chat.searchQuery}
@@ -78,13 +64,7 @@ function SearchResults({
 			transition={{duration: 0.15}}
 			zIndex='dropdown'
 		>
-			<VStack
-				align='stretch'
-				gap='0'
-				maxH='200px'
-				onMouseDown={e => e.preventDefault()}
-				overflowY='auto'
-			>
+			<VStack align='stretch' gap='0' maxH='200px' overflowY='auto'>
 				{results.map(profile => (
 					<SearchResultItem
 						key={profile.id}
